@@ -15,9 +15,9 @@ produs::produs(
 }
 
 ostream& produs::operator<<(ostream& out){
-  out<<denumire<<'\n';
-  out<<pret<<'\n';
-  out<<id_produs<<'\n';
+  out<<denumire<<' ';
+  out<<pret<<' ';
+  out<<id_produs<<' ';
 
   return out;
 }
@@ -48,10 +48,12 @@ unsigned int articol_vestimentar::get_pret(){
 }
 
 ostream& articol_vestimentar::operator<<(ostream& out){
+  out<<"1 ";
+
   this->produs::operator<<(out);
 
-  out<<culoare<<'\n';
-  out<<marca<<'\n';
+  out<<culoare<<' ';
+  out<<marca<<' ';
 
   return out;
 }
@@ -87,24 +89,25 @@ unsigned int disc::get_pret(){
   return pret+5;
 }
 
-ostream& operator<<(ostream& out, disc& src){
-  //operator<<(out, (produs&) src);
-  out<<src.tip_disc<<'\n';
-  out<<src.casa_de_discuri<<'\n';
-  out<<src.data<<'\n';
-  out<<src.trupa<<'\n';
-  out<<src.nume_album<<'\n';
+ostream& disc::operator<<(ostream& out){
+  out<<"2 ";
+  this->produs::operator<<(out);
+  out<<tip_disc<<' ';
+  out<<casa_de_discuri<<' ';
+  out<<data<<' ';
+  out<<trupa<<' ';
+  out<<nume_album<<' ';
 
   return out;
 }
 
-istream& operator>>(istream& in, disc& dst){
-  //operator>>(in, (produs&) dst);
-  in>>dst.tip_disc;
-  in>>dst.casa_de_discuri;
-  in>>dst.data;
-  in>>dst.trupa;
-  in>>dst.nume_album;
+istream& disc::operator>>(istream& in){
+  this->produs::operator>>(in);
+  in>>tip_disc;
+  in>>casa_de_discuri;
+  in>>data;
+  in>>trupa;
+  in>>nume_album;
 
   return in;
 }
@@ -126,20 +129,22 @@ unsigned int vintage::get_pret(){
   return pret + 5 + 15*coeficient_raritate;
 }
 
-ostream& operator<<(ostream& out, vintage& src){
-  //operator<<(out, (produs&)src);
+ostream& vintage::operator<<(ostream& out){
+  out<<"3 ";
 
-  out<<src.mint;
-  out<<src.coeficient_raritate;
+  this->produs::operator<<(out);
+
+  out<<mint<<' ';
+  out<<coeficient_raritate<<' ';
 
   return out;
 }
 
-istream& operator>>(istream& in, vintage& dst){
-  //operator>>(in, (produs&)dst);
+istream& vintage::operator>>(istream& in){
+  this->produs::operator>>(in);
 
-  in>>dst.mint;
-  in>>dst.coeficient_raritate;
+  in>>mint;
+  in>>coeficient_raritate;
 
   return in;
 }

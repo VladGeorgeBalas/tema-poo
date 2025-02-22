@@ -16,6 +16,7 @@ protected:
   string denumire;
   unsigned int pret;
   id<produs> id_produs;
+
 public:
   produs() = default;
   produs(
@@ -38,6 +39,7 @@ class articol_vestimentar: public produs{
 private:
   string culoare;
   string marca;
+
 public:
   articol_vestimentar() = default;
   articol_vestimentar(
@@ -63,6 +65,7 @@ private:
   time_t data;
   string trupa;
   string nume_album;
+
 public:
   disc() = default;
   disc(
@@ -80,15 +83,15 @@ public:
   unsigned int get_pret() override;
 
 public:
-  friend ostream& operator<<(ostream&, disc&);
-  friend istream& operator>>(istream&, disc&);
+  ostream& operator<<(ostream&) override;
+  istream& operator>>(istream&) override;
 };
 
 class vintage: public produs{
 private:
   bool mint;
   unsigned char coeficient_raritate; //aici mergea mai frumos cu enum
-                                     //
+                                     
 public:
   vintage() = default;
   vintage(
@@ -103,6 +106,6 @@ public:
   unsigned int get_pret() override;
 
 public:
-  friend ostream& operator<<(ostream&, vintage&);
-  friend istream& operator>>(istream&, vintage&);
+  ostream& operator<<(ostream&) override;
+  istream& operator>>(istream&) override;
 };
