@@ -1,4 +1,5 @@
 #include "angajat.hpp"
+#include <ostream>
 
 angajat::angajat(
     const string& nume,
@@ -25,27 +26,27 @@ angajat::angajat(
     this->id_angajat = id_angajat;
 }
 
-ostream& operator<<(ostream& out, angajat& src){
-  out<<src.nume<<'\n';
-  out<<src.prenume<<'\n';
-  out<<src.data_angajare<<'\n';
-  out<<src.cnp_angajat<<'\n';
-  out<<src.id_angajat<<'\n';
+ostream& angajat::operator<<(ostream& out){
+  out<<nume<<'\n';
+  out<<prenume<<'\n';
+  out<<data_angajare<<'\n';
+  out<<cnp_angajat<<'\n';
+  out<<id_angajat<<'\n';
 
   return out;
 }
 
-istream& operator>>(istream& in, angajat& dst){
+istream& angajat::operator>>(istream& in){
   //aici ar trebui facute si niste verificari daca
   //utilizatorul manipuleaza manual salvarea, dar 
   //daca e manipulata doar de program, verificarea 
   //la initializare e suficienta
 
-  in>>dst.nume;
-  in>>dst.prenume;
-  in>>dst.data_angajare;
-  in>>dst.cnp_angajat;
-  in>>dst.id_angajat;
+  in>>nume;
+  in>>prenume;
+  in>>data_angajare;
+  in>>cnp_angajat;
+  in>>id_angajat;
 
   return in;
 }
@@ -61,9 +62,50 @@ manager::manager(
     const id<angajat>& id_angajat
     ):angajat(nume, prenume, cnp_angajat, id_angajat), salariu(1.25){}
 
+ostream& manager::operator<<(ostream& out){
+  out<<"1 ";
+
+  this->angajat::operator<<(out);
+
+  return out;
+}
+
+istream& manager::operator>>(istream& in){
+  this->angajat::operator>>(in);
+
+  return in;
+}
+
 asistent::asistent(
     const string& nume,
     const string& prenume,
     const cnp& cnp_angajat,
     const id<angajat>& id_angajat
     ):angajat(nume, prenume, cnp_angajat, id_angajat), salariu(0.75){}
+
+ostream& asistent::operator<<(ostream& out){
+  out<<"2 ";
+
+  this->angajat::operator<<(out);
+
+  return out;
+}
+
+istream& asistent::operator>>(istream& in){
+  this->angajat::operator>>(in);
+
+  return in;
+}
+
+operator_comenzi::operator_comenzi(
+    const string& nume,
+    const string& prenume,
+    const cnp& cnp_angajat,
+    const id<angajat>& id_angajat,
+    const vector<comanda>& comenzi_manipulate
+    ):
+  angajat(nume, prenume, cnp_angajat, id_angajat),
+  comenzi_manipulate(comenzi_manipulate),
+  salariu(1){
+
+  }

@@ -4,6 +4,7 @@
 #include <time.h>
 #include <iostream>
 #include "cod.hpp"
+#include "comanda.hpp"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ protected:
 public:
   virtual float get_salariu() = 0;
 
-  salariu(float coeficient):coeficient(coeficient){};
+  salariu(float coeficient = 1):coeficient(coeficient){};
   ~salariu(){};
 };
 
@@ -37,6 +38,8 @@ protected:
   string nume;
   string prenume;
 public:
+  angajat() = default;
+
   angajat(
       const string&,
       const string&,
@@ -47,8 +50,8 @@ public:
   ~angajat() = default;
 
 public:
-  friend ostream& operator<<(ostream&, angajat&);
-  friend istream& operator>>(istream&, angajat&);
+  virtual ostream& operator<<(ostream&);
+  virtual istream& operator>>(istream&);
 
 public:
   float get_salariu() override;
@@ -56,25 +59,49 @@ public:
 
 class manager: public angajat, virtual public salariu{
 public:
+  manager() = default;
+
   manager(
       const string&,
       const string&,
       const cnp&,
       const id<angajat>&
       );
+
+  ostream& operator<<(ostream& out) override;
+  istream& operator>>(istream& in) override;
 };
 
 class asistent: public angajat, virtual public salariu{
 public:
+  asistent() = default;
+
   asistent(
     const string&,
     const string&,
     const cnp&,
     const id<angajat>&
     );
+
+  ostream& operator<<(ostream& out) override;
+  istream& operator>>(istream& in) override;
 };
 
 class operator_comenzi: public angajat, virtual public salariu{
 private:
-  //vector<comanda>
+  vector<comanda> comenzi_manipulate;
+
+public:
+  operator_comenzi() = default;
+
+  operator_comenzi(
+      const string&,
+      const string&,
+      const cnp&,
+      const id<angajat>&,
+      const vector<comanda>&
+      );
+
+  ostream& operator<<(ostream& out) override;
+  istream& operator>>(istream& in) override;
 };

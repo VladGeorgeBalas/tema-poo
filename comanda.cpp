@@ -60,11 +60,12 @@ istream& comanda::operator>>(istream& in){
   int type;
   int size;
 
-  in>>type;
   in>>size;
 
   in>>primire;
   in>>finalizare;
+
+  in>>type;
 
   for(int i = 0; i < size; i++){
     switch(type){
