@@ -4,6 +4,7 @@
 #include "cod.hpp"
 #include "angajat.hpp"
 #include "produs.hpp"
+#include "comanda.hpp"
 
 using namespace std;
 
@@ -48,6 +49,10 @@ int main(){
   /*
    *  de aici pana aici merge codul :D
    */
+
+  comanda comanda_test(vector<produs*>({new articol_vestimentar("nume", 70, id<produs>(0), "marca", "culoare"), new vintage("nume2", 80, id<produs>(1), 1, 2)}), 0, 0);
+  //comanda_test.operator<<(cout);
+  cout<<comanda_test.check_validity();
 
   ofstream fout("produse");
 

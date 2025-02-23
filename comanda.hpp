@@ -18,5 +18,9 @@ public:
 
 public:
   bool check_validity();
-  unsigned int get_price();
+  unsigned int get_pret();
+
+public:
+  ostream& operator<<(ostream&);
+  istream& operator>>(istream&);
 };

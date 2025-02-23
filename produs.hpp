@@ -90,7 +90,7 @@ public:
 class vintage: public produs{
 private:
   bool mint;
-  unsigned char coeficient_raritate; //aici mergea mai frumos cu enum
+  unsigned int coeficient_raritate; //aici mergea mai frumos cu enum
                                      
 public:
   vintage() = default;
@@ -99,7 +99,7 @@ public:
       const unsigned int&,
       const id<produs>&,
       const bool&,
-      const unsigned char&
+      const unsigned int&
       );
 
 public:

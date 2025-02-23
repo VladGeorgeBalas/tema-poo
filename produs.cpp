@@ -117,7 +117,7 @@ vintage::vintage(
     const unsigned int& pret,
     const id<produs>& id_produs,
     const bool& mint,
-    const unsigned char& coeficient_raritate
+    const unsigned int& coeficient_raritate
     ):
   produs(denumire, pret, id_produs),
   mint(mint),
