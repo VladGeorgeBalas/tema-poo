@@ -1,5 +1,6 @@
 #include "angajat.hpp"
 #include <ostream>
+#include <vector>
 
 angajat::angajat(
     const string& nume,
@@ -109,3 +110,28 @@ operator_comenzi::operator_comenzi(
   salariu(1){
 
   }
+
+ostream& operator_comenzi::operator<<(ostream& out){
+  out<<"3 ";
+  this->angajat::operator<<(out);
+
+  out<<comenzi_manipulate.size()<<" ";
+  for(comanda i : comenzi_manipulate){
+    i.operator<<(out);
+  }
+
+  return out;
+}
+
+istream& operator_comenzi::operator>>(istream& in){
+  this->angajat::operator>>(in);
+
+  int size; in>>size;
+
+  for(int i = 0; i < size; i++){
+    comenzi_manipulate.push_back(comanda());
+    (--comenzi_manipulate.end())->operator>>(in);
+  }
+
+  return in;
+}
