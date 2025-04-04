@@ -8,19 +8,23 @@
 
 using namespace std;
 
+vector<string> split(char* str, const char* delim){
+    char* p = strtok(str, delim);
+}
+
 int main(){
   /*cnp tmp1("6250201017558");
   id<angajat> tmp2(1);
   asistent ionel(string("ionel2"), string("ionescu2"), tmp1, tmp2);
 
-  cout<<ionel.get_salariu();*/
+  cout<<ionel.get_salariu();
   
   //variabile
   vector<pair<produs*, unsigned int>> catalog_produse;
 
   /*
    *  citirea catalogului de produse sub forma <produs, stoc>
-   */
+
 
   ifstream fin("produse");
   int type;
@@ -67,7 +71,7 @@ int main(){
 
   /*
    *  de aici pana aici merge codul :D
-   */
+
   //operator_comenzi op_test{};
   //op_test.operator>>(cin);
   //op_test.operator<<(cout);
@@ -114,6 +118,11 @@ int main(){
   }
   f_ang_out.close();
 
+  */
+
+  string comm_line;
+  cout<<">";
+  cin>>comm_line;
 
   return 0;
 }

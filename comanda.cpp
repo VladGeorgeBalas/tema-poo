@@ -1,7 +1,7 @@
 #include "comanda.hpp"
 #include "produs.hpp"
 #include <istream>
-#include <strings.h>
+#include <string.h>
 #include <vector>
 
 comanda::comanda(
